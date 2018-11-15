@@ -2,9 +2,9 @@ from os.path import join
 
 rule snpeff_gzipped:
     input:
-        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.mutect2.vcf.gz')
+        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.{type}.strelka2.vcf.gz')
     output:
-        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.mutect2.snpeff_annotated.vcf.gz')
+        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.{type}.strelka2.snpeff_annotated.vcf.gz')
     params:
         # Required parameters.
         genome_version = config['snpeff']['genome_version'],
@@ -14,15 +14,15 @@ rule snpeff_gzipped:
         no_statistics = False,
         extra = ''
     threads: config['threads']['snpeff']
-    log: 'logs/snpeff/ann/{tumor}_vs_{normal}.log'
+    log: 'logs/snpeff/ann/{tumor}_vs_{normal}.{type}.log'
     wrapper:
         'http://dohlee-bio.info:9193/snpeff/ann'
 
 rule snpeff:
     input:
-        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.mutect2.vcf')
+        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.{type}.strelka2.vcf')
     output:
-        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.mutect2.snpeff_annotated.vcf')
+        join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.{type}.strelka2.snpeff_annotated.vcf')
     params:
         # Required parameters.
         genome_version = config['snpeff']['genome_version'],
@@ -32,7 +32,7 @@ rule snpeff:
         no_statistics = False,
         extra = ''
     threads: config['threads']['snpeff']
-    log: 'logs/snpeff/ann/{tumor}_vs_{normal}.log'
+    log: 'logs/snpeff/ann/{tumor}_vs_{normal}.{type}.log'
     wrapper:
         'http://dohlee-bio.info:9193/snpeff/ann'
 
