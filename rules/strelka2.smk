@@ -11,8 +11,8 @@ rule strelka2_tumor_normal:
         reference_index = config['reference']['fasta'] + '.fai',
     output:
         # Required output.
-        snv = join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.snvs.strelka.vcf.gz'),
-        indels = join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.indels.strelka.vcf.gz'),
+        snv = join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.snvs.strelka2.vcf.gz'),
+        indels = join(config['result_dir']['tumor'], '{tumor}_vs_{normal}.indels.strelka2.vcf.gz'),
     params:
         # Optional parameters. Omit if unneeded.
         extra = '',
